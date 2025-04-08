@@ -1,13 +1,16 @@
 ﻿#include <iostream>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 
-int ArrLotto[45] = { 0, };
+#define MAX_NUM 45
+
+int ArrLotto[MAX_NUM] = { 0, };
 
 void Initialize()
 {
-    for (int Number = 0; Number < 45; Number++)
+    for (int Number = 0; Number < MAX_NUM; Number++)
     {
         ArrLotto[Number] = Number + 1;
     }
@@ -15,8 +18,9 @@ void Initialize()
 
 void Shuffle()
 {
-    srand(time(NULL));
-    random_shuffle(std::begin(ArrLotto), std::end(ArrLotto));
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(std::begin(ArrLotto), std::end(ArrLotto), g);
 }
 
 void Print()
